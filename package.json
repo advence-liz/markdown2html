@@ -1,0 +1,20 @@
+{
+  "name": "markdown2html",
+  "version": "1.0.0",
+  "description": "Find a way convert mardown to html and have a good look",
+  "main": "gulpfile.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "liz",
+  "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/advence-liz/markdown2html"
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-markdown": "^1.2.0",
+    "marked": "^0.3.6"
+  }
+}
