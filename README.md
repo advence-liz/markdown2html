@@ -1,6 +1,7 @@
 # Markdown2Html
 
-........
+----------
+## Brief
 
 ## Ref
 - [art-template](https://github.com/aui/art-template)

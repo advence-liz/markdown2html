@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Markdown2HTML</title>
+     <link rel="stylesheet" title="Default" href="styles/googlecode.css">
+</head>
+<body>
+     <div class="container">
+         <div class="row">
+             <div class="col-md-12">
+                <h1 id="code-test">code test</h1>
+<hr>
+<h2 id="javascript">javascript</h2>
+<pre><code class="lang-javascript">const gulp = require(&#39;gulp&#39;);
+const markdown = require(&#39;gulp-markdown&#39;);
+const marked = require(&#39;marked&#39;);
+
+/**
+ * default task
+ */
+
+gulp.task(&#39;default&#39;, function () {
+    return gulp.src(&#39;src/*.md&#39;)
+        .pipe(markdown({
+            highlight: function (code, lang) {
+                pygmentize({ lang: lang, format: &#39;html&#39; }, code)
+            }
+        }))
+
+        .pipe(gulp.dest(&#39;dist&#39;));
+});
+</code></pre>
+<h2 id="css">css</h2>
+<pre><code class="lang-css">div.relative {
+    position: relative;
+    left: 30px;
+    border: 3px solid #73AD21;
+}
+</code></pre>
+<h2 id="csharp">csharp</h2>
+<pre><code class="lang-csharp">// Hello1.cs
+public class Hello1
+{
+   public static void Main()
+   {
+      System.Console.WriteLine(&quot;Hello, World!&quot;);
+   }
+}
+</code></pre>
+<h2 id="bash">bash</h2>
+<pre><code class="lang-bash">$ npm run install
+</code></pre>
+
+             </div>
+         </div>
+     </div>
+  
+    <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+    <script> hljs.initHighlightingOnLoad();</script>
+</body>
+
+</html>
