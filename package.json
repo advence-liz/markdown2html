@@ -16,7 +16,7 @@
     "url": "https://github.com/advence-liz/markdown2html"
   },
   "bin": {
-    "template": "./bin/template.js"
+    "template": "./bin/template"
   },
   "devDependencies": {
     "art-template": "^4.1.0",
