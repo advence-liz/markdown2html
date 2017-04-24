@@ -7,14 +7,60 @@
     <link rel="stylesheet" title="Default" href="styles/googlecode.css">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="http://v3.bootcss.com/assets/css/docs.min.css" rel="stylesheet">
+    <style>
+        pre,
+        .hljs {
+            background-color: #f7f7f9;
+        }
+        
+        .nav>li {
+            position: relative;
+            display: block;
+        }
+        
+        .nav>a:active {
+            padding-left: 18px;
+            font-weight: 700;
+            color: #563d7c;
+            background-color: transparent;
+            border-left: 2px solid #563d7c;
+        }
+        
+        .bs-docs-sidebar .nav>li>a {
+            display: block;
+            padding: 4px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #767676;
+        }
+        
+        .nav>li>a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+        
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1><i class="em em-joy"></i></h1>
-    <div class="container">
+    <div class="bs-docs-header" id="content" tabindex="-1">
+        <div class="container">
+            <h1>Markdown2HTML</h1>
+            <p>全文直接由markdown文档转化而来，目前样式直接copy bootstrap<i class="em em-joy"></i><i class="em em-joy"></i><i class="em em-joy"></i></p>
+
+        </div>
+    </div>
+    <div class="container bs-docs-container">
         <div class="row">
             <div class="col-md-9" role="main">
-                <section id="code"><h1 id="code-test">code test</h1>
+                <section class="bs-docs-section" id="code"><h1 id="code-test">code test</h1>
 <hr>
 <h2 id="javascript">javascript</h2>
 <pre><code class="lang-javascript">const gulp = require(&#39;gulp&#39;);
@@ -53,11 +99,47 @@ public class Hello1
    }
 }
 </code></pre>
+<div class="bs-example" data-example-id="glyphicons-general">
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
+        <button type="button" class="btn btn-default" aria-label="Center Align"><span class="glyphicon glyphicon-align-center" aria-hidden="true"></span></button>
+        <button type="button" class="btn btn-default" aria-label="Right Align"><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button>
+        <button type="button" class="btn btn-default" aria-label="Justify"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+      </div>
+    </div>
+    <div class="btn-toolbar" role="toolbar">
+      <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+      <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+      <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+    </div>
+  </div>
+
+
 <h2 id="bash">bash</h2>
 <pre><code class="lang-bash">$ npm run install
 </code></pre>
+<h2 id="test-example">test example</h2>
+<div class="bs-example" data-example-id="glyphicons-general">
+    <div class="btn-toolbar" role="toolbar">
+      <div class="btn-group">
+        <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
+        <button type="button" class="btn btn-default" aria-label="Center Align"><span class="glyphicon glyphicon-align-center" aria-hidden="true"></span></button>
+        <button type="button" class="btn btn-default" aria-label="Right Align"><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button>
+        <button type="button" class="btn btn-default" aria-label="Justify"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+      </div>
+    </div>
+    <div class="btn-toolbar" role="toolbar">
+      <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+      <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+      <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+      <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+    </div>
+  </div>
+
 </section>
-<section id="readme"><h1 id="markdown2html">Markdown2Html</h1>
+<section class="bs-docs-section" id="readme"><h1 id="markdown2html">Markdown2Html</h1>
 <hr>
 <h2 id="brief">Brief</h2>
 <h2 id="ref">Ref</h2>
@@ -73,18 +155,35 @@ public class Hello1
             </div>
             <div class="col-md-3" role="nav">
 
-                <nav>
-                    <ul>
+                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+                    <ul class="nav bs-docs-sidenav">
+                        
+                        <li>
+                            <a href="#code">code</a>
+                        </li>
+                        
+                        <li>
+                            <a href="#readme">readme</a>
+                        </li>
                         
                     </ul>
                 </nav>
             </div>
         </div>
     </div>
-
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
     <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/affix.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
+        $('.affix').affix({
+            offset: 300
+        })
+        var li_list=$(".nav li");
+        $(".nav").on('click','li',function(){
+            li_list.removeClass('active');
+            $(this).addClass('active');
+        })
     </script>
 </body>
 

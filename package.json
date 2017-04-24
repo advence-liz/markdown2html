@@ -2,13 +2,14 @@
   "name": "markdown2html",
   "version": "1.0.0",
   "description": "Find a way convert mardown to html and have a good look",
-  "main": "gulpfile.js",
+  "main": "template.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "npm run complie&&npm run build&&launch",
     "build": "node template",
-    "start": "npm install&&npm link",
-    "complie":"gulp",
-    "description":"start restore packages link bin to OS path"
+    "restore": "npm install",
+    "complie": "gulp",
+    "start": "npm run restore&&npm run test",
+    "description": "start restore packages link bin to OS path"
   },
   "author": "liz",
   "license": "ISC",

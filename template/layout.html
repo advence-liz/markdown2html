@@ -7,19 +7,65 @@
     <link rel="stylesheet" title="Default" href="styles/googlecode.css">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link href="http://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap-grid.css" rel="stylesheet">
+    <link href="http://v3.bootcss.com/assets/css/docs.min.css" rel="stylesheet">
+    <style>
+        pre,
+        .hljs {
+            background-color: #f7f7f9;
+        }
+        
+        .nav>li {
+            position: relative;
+            display: block;
+        }
+        
+        .nav>a:active {
+            padding-left: 18px;
+            font-weight: 700;
+            color: #563d7c;
+            background-color: transparent;
+            border-left: 2px solid #563d7c;
+        }
+        
+        .bs-docs-sidebar .nav>li>a {
+            display: block;
+            padding: 4px 20px;
+            font-size: 13px;
+            font-weight: 500;
+            color: #767676;
+        }
+        
+        .nav>li>a {
+            position: relative;
+            display: block;
+            padding: 10px 15px;
+        }
+        
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+    </style>
+
 </head>
 
 <body>
-    <h1><i class="em em-joy"></i></h1>
-    <div class="container">
+    <div class="bs-docs-header" id="content" tabindex="-1">
+        <div class="container">
+            <h1>Markdown2HTML</h1>
+            <p>全文直接由markdown文档转化而来，目前样式直接copy bootstrap<i class="em em-joy"></i><i class="em em-joy"></i><i class="em em-joy"></i></p>
+
+        </div>
+    </div>
+    <div class="container bs-docs-container">
         <div class="row">
             <div class="col-md-9" role="main">
                 {{include './temp'}}
             </div>
             <div class="col-md-3" role="nav">
 
-                <nav>
-                    <ul>
+                <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
+                    <ul class="nav bs-docs-sidenav">
                         {{each target}}
                         <li>
                             <a href="#{{$value.name}}">{{$value.name}}</a>
@@ -30,10 +76,19 @@
             </div>
         </div>
     </div>
-
+    <script src="http://cdn.bootcss.com/jquery/3.2.1/jquery.slim.min.js"></script>
     <script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+    <script src="http://cdn.bootcss.com/bootstrap/3.2.0/js/affix.js"></script>
     <script>
         hljs.initHighlightingOnLoad();
+        $('.affix').affix({
+            offset: 300
+        })
+        var li_list=$(".nav li");
+        $(".nav").on('click','li',function(){
+            li_list.removeClass('active');
+            $(this).addClass('active');
+        })
     </script>
 </body>
 
