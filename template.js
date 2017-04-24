@@ -43,7 +43,7 @@ function createTemporaryTemplate() {
  */
 function createHTML() {
     var html = template('layout',{target:option_array});
-    fs.writeFile('demo.html', html, (err) => {
+    fs.writeFile('index.html', html, (err) => {
         if (err) throw err;
         console.log('demo created!');
     });
