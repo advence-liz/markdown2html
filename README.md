@@ -1,11 +1,16 @@
 # Markdown2Html
-
+本工程将markdown文档编译成html文档，并且将编译后的html文档整合为API文档
 ----------
 ## Brief
 
 ```bash
 $ npm start//执行命令直接运行查看效果
 ```
+## 目录结构
+- root
+  + html //markdown 编辑成html所存放位置
+  + md //markdown 原文件所存放位置
+  + templateoption.js //配置文件配置将那些html 整合成API 文档
 ## Ref
 - [art-template](https://github.com/aui/art-template)
 - [pygmentize](https://github.com/rvagg/node-pygmentize-bundled)
