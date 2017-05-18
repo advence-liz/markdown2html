@@ -29,3 +29,5 @@ $ npm run test //运行测试
 - [highlight.js  看着完美符合gulp markdown 转化出来的文档](https://github.com/isagalaev/highlight.js)
 - [highlight sytle](https://highlightjs.org/static/demo/)
 - [remarkable](https://github.com/jonschlinkert/remarkable)
+- [markdown相关工具](http://www.jianshu.com/p/34c92cbd0aaf)
+- [ztree](http://ruby-china.org/topics/17028)
