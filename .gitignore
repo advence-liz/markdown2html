@@ -8,6 +8,9 @@ bower_components/
  "**/.*"
  .vs/
 test/
+template/temp.html
+html/
+temp/
 #################
 ## Visual Studio
 #################
