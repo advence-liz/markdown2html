@@ -11,6 +11,11 @@ $ gulp ztree --path md//将指定路径下的markdown文档转为html然后生�
 
 $ gulp toc --path md//将指定路径下的markdown文档转为html然后生成bootstrap风格的API文档
 ```
+## 大概这个样子
+### TOC
+![](./md/toc.gif)
+### Ztree
+![](./md/ztree.gif)
 ## 目录结构
 - root
   + html //markdown 编辑成html所存放位置
