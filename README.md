@@ -6,7 +6,7 @@
 
 ```bash
 $ npm install 下载依赖
-
+$ npm start 
 $ gulp ztree --path md//将指定路径下的markdown文档转为html然后生成ztree风格的API文档
 
 $ gulp toc --path md//将指定路径下的markdown文档转为html然后生成bootstrap风格的API文档

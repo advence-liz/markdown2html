@@ -4,8 +4,7 @@
   "description": "Find a way convert mardown to html and have a good look",
   "main": "gulpfile.js",
   "scripts": {
-    "less": "gulp less:html",
-    "widget": "gulp widget:html"
+   "start": "npm install && gulp ztree --path md && gulp ztree --path md"
   },
   "author": "liz",
   "license": "ISC",
