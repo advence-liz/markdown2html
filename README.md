@@ -3,24 +3,19 @@
 ----------
 ## Brief
 [在线DEMO](https://advence-liz.github.io/markdown2html/index.html)
+
 ```bash
-$ npm start//执行命令直接运行查看效果
+$ npm install 下载依赖
 
-$ npm run restore//下载依赖
+$ gulp ztree --path md//将指定路径下的markdown文档转为html然后生成ztree风格的API文档
 
-$ npm run compile //编译markdown文档
-
-$ npm run build //整合编译后html 文档
-
-$ npm run test //运行测试
+$ gulp toc --path md//将指定路径下的markdown文档转为html然后生成bootstrap风格的API文档
 ```
 ## 目录结构
 - root
   + html //markdown 编辑成html所存放位置
   + md //markdown 原文件所存放位置
-  + templateoption.js //配置文件配置将那些html 整合成API 文档
   + gulpfile.js //编辑markdown 逻辑
-  + template.js //整合生成的html文档逻辑
   + template //模板存放目录
 ## Ref
 - [art-template](https://github.com/aui/art-template)

@@ -16,11 +16,15 @@
   "devDependencies": {
     "art-template": "^4.1.0",
     "gulp": "^3.9.1",
+    "gulp-clean": "^0.3.2",
     "gulp-markdown": "^1.2.0",
     "marked": "^0.3.6"
   },
   "dependencies": {
     "get-gulp-args": "0.0.1",
-    "gulp-concat": "^2.6.1"
+    "gulp-concat": "^2.6.1",
+    "gulp-git": "^2.4.2",
+    "gulp-html-beautify": "^1.0.1",
+    "q": "^1.5.0"
   }
 }

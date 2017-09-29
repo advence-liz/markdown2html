@@ -1,0 +1,182 @@
+﻿<!DOCTYPE>
+<html>
+
+<head>
+	<title>md</title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../ztree_toc/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<link rel="stylesheet" title="Default" href="../styles/googlecode.css">
+	<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <!--<link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap-grid.css" rel="stylesheet">-->
+    <!-- <link rel="stylesheet" title="Default" href="../prometheus3/dist/gui/auiframework.css"> -->
+    <link href="https://v3.bootcss.com/assets/css/docs.min.css" rel="stylesheet">
+	<style>
+        body{
+            font-size: 13px;
+        }
+        table{
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        table th, table td{
+            border: 1px solid #000;
+            padding: 3px 5px;
+        }
+		 .tree-toc {
+            flex: 2;
+        }
+
+        .tree-content {
+            flex: 8;
+        }
+
+        pre,
+        .hljs {
+            background-color: #f7f7f9;
+        }
+
+        pre {
+            border: 1px solid goldenrod;
+        }
+
+        .hljs {
+            position: relative;
+            padding: 40px 15px 15px;
+            padding-top: 45px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+        }
+
+        .hljs::after {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #959595;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            content: "CODE";
+        }
+	</style>
+
+</head>
+
+<body>
+
+	<div style="display:flex;">
+		<div class="tree-toc">
+			<ul id="tree" class="ztree">
+
+			</ul>
+		</div>
+
+		<div class="tree-content">
+             <h1 id="code-test">code test</h1>
+<hr>
+<h2 id="javascript">javascript</h2>
+<pre><code class="lang-javascript">const gulp = require(&#39;gulp&#39;);
+const markdown = require(&#39;gulp-markdown&#39;);
+const marked = require(&#39;marked&#39;);
+
+/**
+ * default task
+ */
+
+gulp.task(&#39;default&#39;, function () {
+    return gulp.src(&#39;src/*.md&#39;)
+        .pipe(markdown({
+            highlight: function (code, lang) {
+                pygmentize({ lang: lang, format: &#39;html&#39; }, code)
+            }
+        }))
+
+        .pipe(gulp.dest(&#39;dist&#39;));
+});
+</code></pre>
+<h2 id="css">css</h2>
+<pre><code class="lang-css">div.relative {
+    position: relative;
+    left: 30px;
+    border: 3px solid #73AD21;
+}
+</code></pre>
+<h2 id="csharp">csharp</h2>
+<pre><code class="lang-csharp">// Hello1.cs
+public class Hello1
+{
+   public static void Main()
+   {
+      System.Console.WriteLine(&quot;Hello, World!&quot;);
+   }
+}
+</code></pre>
+<div class="bs-example" data-example-id="glyphicons-general">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default" aria-label="Center Align"><span class="glyphicon glyphicon-align-center" aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default" aria-label="Right Align"><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default" aria-label="Justify"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+        </div>
+    </div>
+    <div class="btn-toolbar" role="toolbar">
+        <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+        <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+    </div>
+</div>
+
+
+<h2 id="bash">bash</h2>
+<pre><code class="lang-bash">$ npm run install
+</code></pre>
+<h2 id="test-example">test example</h2>
+<div class="bs-example" data-example-id="glyphicons-general">
+    <div class="btn-toolbar" role="toolbar">
+        <div class="btn-group">
+            <button type="button" class="btn btn-default" aria-label="Left Align"><span class="glyphicon glyphicon-align-left" aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default" aria-label="Center Align"><span class="glyphicon glyphicon-align-center" aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default" aria-label="Right Align"><span class="glyphicon glyphicon-align-right" aria-hidden="true"></span></button>
+            <button type="button" class="btn btn-default" aria-label="Justify"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></button>
+        </div>
+    </div>
+    <div class="btn-toolbar" role="toolbar">
+        <button type="button" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+        <button type="button" class="btn btn-default"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+        <button type="button" class="btn btn-default btn-xs"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Star</button>
+    </div>
+</div>
+
+
+<h1 id="markdown2html">Markdown2Html</h1>
+<hr>
+<h2 id="brief">Brief</h2>
+<h2 id="ref">Ref</h2>
+<ul>
+    <li><a href="https://github.com/aui/art-template">art-template</a></li>
+    <li><a href="https://github.com/rvagg/node-pygmentize-bundled">pygmentize</a></li>
+    <li><a href="https://segmentfault.com/a/1190000000661337">pygmentize segmentfault create pygmentize.css</a></li>
+    <li><a href="https://github.com/isagalaev/highlight.js">highlight.js  看着完美符合gulp markdown 转化出来的文档</a></li>
+    <li><a href="https://highlightjs.org/static/demo/">highlight sytle</a></li>
+</ul>
+		</div>
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="../ztree_toc/js/jquery.ztree.core-3.5.min.js"></script>
+	<script type="text/javascript" src="../ztree_toc/js/ztree_toc.js"></script>
+	<script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+	<script type="text/javascript">
+		$('#tree').ztree_toc({
+			is_auto_number: false,
+			use_head_anchor: true,
+            is_expand_all: false
+		});
+		hljs.initHighlightingOnLoad();
+	</script>
+</body>
+
+</html>

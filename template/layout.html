@@ -1,24 +1,50 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="utf-8">
     <title>Markdown2HTML</title>
-    <link rel="stylesheet" title="Default" href="styles/googlecode.css">
+    <link rel="stylesheet" title="Default" href="../styles/googlecode.css">
     <link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
     <link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap-grid.css" rel="stylesheet">
     <link href="https://v3.bootcss.com/assets/css/docs.min.css" rel="stylesheet">
+    <!-- <link rel="stylesheet" title="Default" href="../prometheus3/dist/gui/auiframework.css"> -->
     <style>
         pre,
         .hljs {
             background-color: #f7f7f9;
         }
-        
+
+        pre {
+            border: 1px solid goldenrod;
+        }
+
+        .hljs {
+            position: relative;
+            padding: 40px 15px 15px;
+            padding-top: 45px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+        }
+
+        .hljs::after {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #959595;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            content: "CODE";
+        }
+
         .nav>li {
             position: relative;
             display: block;
         }
-        
+
         .nav>a:active {
             padding-left: 18px;
             font-weight: 700;
@@ -26,7 +52,7 @@
             background-color: transparent;
             border-left: 2px solid #563d7c;
         }
-        
+
         .bs-docs-sidebar .nav>li>a {
             display: block;
             padding: 4px 20px;
@@ -34,16 +60,28 @@
             font-weight: 500;
             color: #767676;
         }
-        
+
         .nav>li>a {
             position: relative;
             display: block;
             padding: 10px 15px;
         }
-        
+
         a {
             color: #337ab7;
             text-decoration: none;
+        }
+
+        thead>tr>th {
+            padding: 8px;
+            line-height: 1.42857143;
+        }
+
+        tr>td {
+            padding: 8px;
+            line-height: 1.42857143;
+            vertical-align: top;
+            border-top: 1px solid #ddd;
         }
     </style>
 
@@ -60,17 +98,19 @@
     <div class="container bs-docs-container">
         <div class="row">
             <div class="col-md-9" role="main">
-                {{include './temp'}}
+                <% include('../temp/toc_temp.html') %>
             </div>
             <div class="col-md-3" role="nav">
 
                 <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix">
                     <ul class="nav bs-docs-sidenav">
-                        {{each target}}
-                        <li>
-                            <a href="#{{$value.name}}">{{$value.name}}</a>
-                        </li>
-                        {{/each}}
+                        <% for(var i = 0; i < target.length; i++){ %>
+                            <li>
+                                <a href="#<%= target[i].name %>">
+                                    <%= target[i].name %>
+                                </a>
+                            </li>
+                            <% } %>
                     </ul>
                 </nav>
             </div>
@@ -84,8 +124,8 @@
         $('.affix').affix({
             offset: 300
         })
-        var li_list=$(".nav li");
-        $(".nav").on('click','li',function(){
+        var li_list = $(".nav li");
+        $(".nav").on('click', 'li', function () {
             li_list.removeClass('active');
             $(this).addClass('active');
         })

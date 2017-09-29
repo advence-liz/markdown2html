@@ -1,0 +1,93 @@
+﻿<!DOCTYPE>
+<html>
+
+<head>
+	<title><%= name%></title>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+	<link rel="stylesheet" href="../ztree_toc/css/zTreeStyle/zTreeStyle.css" type="text/css">
+	<link rel="stylesheet" title="Default" href="../styles/googlecode.css">
+	<link href="https://afeld.github.io/emoji-css/emoji.css" rel="stylesheet">
+    <!--<link href="https://cdn.bootcss.com/bootstrap/4.0.0-alpha.6/css/bootstrap-grid.css" rel="stylesheet">-->
+    <!-- <link rel="stylesheet" title="Default" href="../prometheus3/dist/gui/auiframework.css"> -->
+    <link href="https://v3.bootcss.com/assets/css/docs.min.css" rel="stylesheet">
+	<style>
+        body{
+            font-size: 13px;
+        }
+        table{
+            table-layout: fixed;
+            border-collapse: collapse;
+        }
+        table th, table td{
+            border: 1px solid #000;
+            padding: 3px 5px;
+        }
+		 .tree-toc {
+            flex: 2;
+        }
+
+        .tree-content {
+            flex: 8;
+        }
+
+        pre,
+        .hljs {
+            background-color: #f7f7f9;
+        }
+
+        pre {
+            border: 1px solid goldenrod;
+        }
+
+        .hljs {
+            position: relative;
+            padding: 40px 15px 15px;
+            padding-top: 45px;
+            padding-right: 15px;
+            padding-bottom: 15px;
+            padding-left: 15px;
+        }
+
+        .hljs::after {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            font-size: 15px;
+            font-weight: 700;
+            color: #959595;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            content: "CODE";
+        }
+	</style>
+
+</head>
+
+<body>
+
+	<div style="display:flex;">
+		<div class="tree-toc">
+			<ul id="tree" class="ztree">
+
+			</ul>
+		</div>
+
+		<div class="tree-content">
+             <% include('../temp/ztree_temp.html') %>
+		</div>
+	</div>
+	<script src="http://cdn.bootcss.com/jquery/2.2.0/jquery.min.js"></script>
+	<script type="text/javascript" src="../ztree_toc/js/jquery.ztree.core-3.5.min.js"></script>
+	<script type="text/javascript" src="../ztree_toc/js/ztree_toc.js"></script>
+	<script src="https://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+	<script type="text/javascript">
+		$('#tree').ztree_toc({
+			is_auto_number: false,
+			use_head_anchor: true,
+            is_expand_all: false
+		});
+		hljs.initHighlightingOnLoad();
+	</script>
+</body>
+
+</html>

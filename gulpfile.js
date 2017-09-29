@@ -11,21 +11,23 @@ const gulp = require('gulp'),
     args = require('get-gulp-args')(),
     htmlbeautify = require('gulp-html-beautify'),
     templatePath = path.join(__dirname, 'template'),
-    exec = require('child_process').exec;
-   
+    exec = require('child_process').exec,
+    git = require('gulp-git'),
+    Q = require("q");
+
 var index_array = [];
 template.defaults.extname = ".html";//tempalte默认后缀名改为.html 方便编辑模板不然没有智能提示
 template.defaults.root = templatePath;//这个位置是相对根目录的位置，并且当前工作目录移动到子目录npm run template 依然有效
-template.defaults.rules.pop()//去掉标准规则
-gulp.task('del',function(){
+template.defaults.rules.pop();//去掉标准规则 因为 jsx 代码很容易写出 {{ xxxx}}
+gulp.task('del', function () {
     gulp.src('temp/*.html')
-    .pipe(del());
+        .pipe(del());
 });
 
-gulp.task('bootmd2html', function () {
+gulp.task('bootmd2html', ['pull'], function () {
     let md_path = args.path;
-    let source_path= path.resolve(__dirname,md_path,'*.md');
-    let dist_path= path.resolve(__dirname,'html',md_path);
+    let source_path = path.resolve(__dirname, md_path, '*.md');
+    let dist_path = path.resolve(__dirname, 'html', md_path);
     return gulp.src(source_path)
         .pipe(markdown())
         .pipe(htmlbeautify())
@@ -42,117 +44,95 @@ gulp.task('toc', ['bootmd2html'], function () {
      * @var uri_prefix {String} 源HTML 文件目录相对 模块页的相对路径
      */
     let md_path = args.path;
-    let sourcePath = path.resolve(__dirname, 'html',md_path);
-    let distPath = path.resolve(__dirname, 'demo',`${md_path}.html`);
-    let uri_prefix = `../html/${md_path}/`;//这个必须相当路径 
+    let sourcePath = path.resolve(__dirname, 'html', md_path);
+    let distPath = path.resolve(__dirname, 'demo', `${md_path}toc.html`);
+    try {
+        fs.statSync(path.resolve(__dirname, 'demo'));
+       
+    } catch (error) {
+        fs.mkdirSync('demo');
+    }
 
-    createHTML(sourcePath,distPath,uri_prefix)
-   
+    let uri_prefix = `../html/${md_path}/`;//这个必须是相对路径 
+
+    createHTML(sourcePath, distPath, uri_prefix)
+
 });
 
+function createHTML(sourcePath, distPath, uri_prefix) {
+    let files;
+    let temp_template = '';//临时模板文件
+    files = fs.readdirSync(sourcePath);
+
+
+    /**
+     * @param filename {String} widget.html
+     */
+    files.forEach(function (filename) {
+        let id = filename.slice(0, -5);//由于后缀为html 就这样简单处理了
+        let uri = uri_prefix + filename;
+        index_array.push({ name: id });
+
+        temp_template += `<section class="bs-docs-section" id="${id}"> <% include ('${uri}')%></section>\n`;
+
+    });
+
+    /**
+     * 
+     */
+    fs.writeFileSync('./temp/toc_temp.html', temp_template);
+
+    console.log('temporary file template created!');
+    var html = template('layout', { target: index_array });
+    fs.writeFileSync(distPath, html);
+    console.log('demo created!');
+
+
+}
 
 /**
  * @desc 合并指定目录下markdown文档，并转为html，并且存储在临时文件中
  * 
  */
-gulp.task('md2html',['del'], function() {
-     let md_path=args.path;
-     gulp.src(md_path+'/*.md')
-    .pipe(concat('toc.md'))
-    .pipe(markdown())
-    .pipe(htmlbeautify())
-    .pipe(gulp.dest('./temp/'))
+gulp.task('md2html', ['pull'], function () {
+    let md_path = args.path;
+    return gulp.src(md_path + '/*.md')
+        .pipe(concat('ztree_temp.md'))
+        .pipe(markdown())
+        .pipe(htmlbeautify())
+        .pipe(gulp.dest('./temp/'))
 });
 
 /**
  * @desc 将指定路径下的markdown文档转为html然后生成ztree风格的API文档
  * @cmd gulp ztree --path widget
  */
-gulp.task('ztree',['md2html'],function() {
-    
-      const html = template('ztree_layout',{});//第二个空对象必须传
-      const distPath=path.resolve(__dirname,'demo',args.path+'toc.html');
-            fs.writeFile(distPath, html, (err) => {
-                if (err) throw err;
-                console.log('ztree toc html created!');
-            });
+gulp.task('ztree', ['md2html'], function () {
+
+    const html = template('ztree_layout', { name: args.path });//第二个空对象必须传
+    const distPath = path.resolve(__dirname, 'demo', args.path + 'ztree.html');
+    try {
+        fs.statSync(path.resolve(__dirname, 'demo'));
+       
+    } catch (error) {
+        fs.mkdirSync('demo');
+    }
+    fs.writeFileSync(distPath, html);
+    console.log(`${args.path}:ztree toc html created!`);
+
 });
 
-gulp.task('htmlbeautify',function(){
+gulp.task('htmlbeautify', function () {
     gulp.src('demo/*.html')
-    .pipe(htmlbeautify({indentSize: 2}))
-    .pipe(gulp.dest('pages/'))
+        .pipe(htmlbeautify({ indentSize: 2 }))
+        .pipe(gulp.dest('pages/'))
 
 })
 
 
-function createHTML(sourcePath,distPath,uri_prefix){
-     fs.readdir(sourcePath, function (err, files) {
-        let temp_template = '';//临时模板文件
-        if (err) {
-            console.log(err);
-            return;
-        }
-        /**
-         * @param filename {String} widget.html
-         */
-        files.forEach(function (filename) {
-            let id = filename.slice(0, -5);//由于后缀为html 就这样简单处理了
-            let uri = uri_prefix+ filename;
-            index_array.push({ name: id });
 
-            // temp_template += `<section class="bs-docs-section" id="${id}">{{include '${uri}'}}</section>\n`;
-            temp_template += `<section class="bs-docs-section" id="${id}"> <% include ('${uri}')%></section>\n`;
-              
-        });
-
-        /**
-         * 生成临时模板,临时文件可能存在同时操作的问题，但是gulp 依赖的机制应该也不会冲突
-         */
-        fs.writeFile('./template/temp.html', temp_template, (err) => {
-            if (err) throw err;
-            console.log('temp template created!');
-            var html = template('layout', { target: index_array });
-            fs.writeFile(distPath, html, (err) => {
-                if (err) throw err;
-                console.log('demo created!');
-            });
-        });
-    });
-}
-
-//gulp.start('widget:html');
-
-
-/**
- * @desc copy DEMO 站点所需资源
- */
-let prometheus3Root=path.join('..','prometheus3');
-let reactRoot=path.join('..','react-component');
-
-gulp.task("clean:sources", function () {
-    return gulp.src(['prometheus3','react-component'], { read: false }).pipe(del());
+gulp.task('pull', function () {
+    // git.pull('origin', 'master', function (err) {
+    //     if (err) throw err;
+    // });
 });
-
-gulp.task("copy:prometheus",  function () {
-    let sources = path.join(prometheus3Root,'dist','**');
-    let less = path.join(prometheus3Root,'less','**');
-    return gulp.src([sources,less], { base: '..' })
-        .pipe(gulp.dest('.'));
-})
-
-gulp.task("copy:react",  function () {
-    let reactBundle = path.join(reactRoot,'build','**');
-    let reactSources = path.join(reactRoot,'sources','**');
-    gulp.src([reactBundle,reactSources], { base: '..' })
-        .pipe(gulp.dest('.'));
-})
-gulp.task("copy:sources",['copy:react','copy:prometheus'],function(){
-    exec('start http://demo.api.com', function (error, stdout, stderr) {
-  if (error) {
-    console.log(error.stack);
-    console.log('Error code: ' + error.code);
-  }
-  console.log('Child Process STDOUT: ' + stdout);
-});
-})
